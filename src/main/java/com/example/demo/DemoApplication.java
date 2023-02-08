@@ -3,8 +3,12 @@ package com.example.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+
 
 @SpringBootApplication
+@OpenAPIDefinition(info = @Info(title = "Management API", version = "2.0", description = "Management API"))
 public class DemoApplication {
 
 	public static void main(String[] args) {
