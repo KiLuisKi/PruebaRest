@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.micrometer.core.instrument.config.validate.ValidationException;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -24,6 +26,15 @@ public class UserController {
 
 	@PostMapping
 	public Userss createUser(@RequestBody Userss user) {
+		if (user.getName() == null && user.getBirthDate() == null) {
+			throw new IllegalArgumentException("User name and birth date is required");
+		}
+		else if (user.getName() == null) {
+			throw new IllegalArgumentException("User name is required");
+		}
+		else if (user.getBirthDate() == null) {
+			throw new IllegalArgumentException("User birth date is required");
+		}
 		return userService.createUser(user);
 	}
 
